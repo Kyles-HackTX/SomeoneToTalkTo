@@ -5,11 +5,12 @@ from librosa.feature.spectral import mfcc
 import numpy as np
 from model import EmotionClassifier
 
+
 class Predict():
     def __init__(self):
-        model = EmotionClassifier()
-        model.load_state_dict(torch.load('./mvp.zip'))
-        model.eval()
+        self.model = EmotionClassifier()
+        self.model.load_state_dict(torch.load('./mvp.zip'))
+        self.model.eval()
 
     def __call__(self, wav_file):
         X, sample_rate = librosa.load(wav_file,
@@ -35,5 +36,22 @@ class Predict():
         # the class with the highest energy is what we choose as prediction
         _, predicted = torch.max(outputs.data, 1)
         # print(le_name_mapping[max(predicted)])
+
+        name_le_mapping = {0: 'female_angry',
+    1: 'female_calm',
+ 2: 'female_disgust',
+ 3: 'female_fear',
+ 4: 'female_happy',
+ 5: 'female_neutral',
+ 6: 'female_sad',
+ 7: 'female_surprise',
+ 8: 'male_angry',
+ 9: 'male_calm',
+ 10: 'male_disgust',
+ 11: 'male_fear',
+ 12: 'male_happy',
+ 13: 'male_neutral',
+ 14: 'male_sad',
+     15: 'male_surprise'}
 
         return name_le_mapping[predicted.item()]

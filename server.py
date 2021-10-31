@@ -27,7 +27,7 @@ class AudioUploadResource(Resource):
         
         convert_and_split('audio.wav')
         
-        emotion = predict("output.wav")
+        emotion = predict('out000000000.wav')
         print(emotion)
         return {'emotion': emotion}
         # Validate the request
