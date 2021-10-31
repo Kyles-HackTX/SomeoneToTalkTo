@@ -12,7 +12,7 @@ class AudioUploadResource(Resource):
     def post(self):
         data = request.get_json()
         print(data)
-        print(request.files)
+        print(request.files["audio_data"])
         return {'hello': 'POST'}
         # Validate the request
         # Capture the audio data from the request
