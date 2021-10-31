@@ -90,7 +90,9 @@ print(le_name_mapping)
 train_loader_obj = Loader(X_train, y_train, le)
 test_loader_obj = Loader(X_test, y_test, le)
 
-print(train_loader_obj.__len__())
+training_loader = DataLoader(train_loader_obj, num_workers=6, batch_size=32, shuffle=True, drop_last=True)
+test_loader = DataLoader(test_loader_obj, num_workers=6, batch_size=32, shuffle=True, drop_last=True)
+
 
 
 
