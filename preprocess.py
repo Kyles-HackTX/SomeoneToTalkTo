@@ -2,7 +2,6 @@ from types import prepare_class
 from librosa.feature.spectral import mfcc
 import torch
 from torch._C import dtype
-import torchaudio as ta
 from torch.utils.data import Dataset, DataLoader
 import pandas as pd
 import librosa
@@ -12,9 +11,6 @@ import numpy as np
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
-
-AUDIO_ONLY = '03'
-    # self.files = list(filter(lambda f: f[:2] == AUDIO_ONLY, self.files))
 
 
 def pre_process(wav_df):
@@ -32,8 +28,8 @@ def pre_process(wav_df):
                                     )
         sample_rate = np.array(sample_rate)
         mfccs = np.mean(
-            librosa.feature.mfcc(y=X, 
-                                sr=sample_rate, 
+            librosa.feature.mfcc(y=X,
+                                sr=sample_rate,
                                 n_mfcc=13),
                                 axis=0
                             )
@@ -60,7 +56,7 @@ def pre_process(wav_df):
 
     return mfcc_df
 
-    
+
 
 
 """
@@ -116,16 +112,15 @@ class Loader():
         print(X)
         print(len(X))
 
-        label = self.to_categorical(label_encoder.transform(y), len(label_encoder.classes_))
+        # labels = self.to_categorical(label_encoder.transform(y), len(label_encoder.classes_))
+        label = label_encoder.transform(y)
 
-        self.data = torch.from_numpy(X.to_numpy(dtype=np.float32))
-        self.labels = torch.from_numpy(label)
-    
+        self.data = torch.from_numpy(X)
+        self.labels = torch.tensor(label, dtype=torch.float)
+        # self.labels = torch.from_numpy(labels)
+
     def __len__(self):
         return len(self.data)
 
     def __getitem__(self, idx):
         return self.data[idx], self.labels[idx]
-
-
-
