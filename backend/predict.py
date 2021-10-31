@@ -7,8 +7,8 @@ import numpy as np
 
 class Predict():
     def __init__(self):
-        model = torch.load("../mvp.zip")
-        model.eval()
+        self.model = torch.load("/home/ubuntu/rest-api/SomeoneToTalkTo/mvp.zip")
+        self.model.eval()
 
     def __call__(self, wav_file):
         X, sample_rate = librosa.load(wav_file,
