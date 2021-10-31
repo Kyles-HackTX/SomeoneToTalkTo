@@ -3,12 +3,16 @@ from flask_restful import reqparse, abort, Api, Resource
 import json
 import torch
 from predict import Predict
-
+import subprocess
 
 app = Flask(__name__)
 api = Api(app)
 
 predict = Predict()
+
+def convert_and_split(filename):
+    command = ['ffmpeg', '-i', filename, '-f', 'segment', '-segment_time', '15', 'output.wav']
+    subprocess.run(command,stdout=subprocess.PIPE,stdin=subprocess.PIPE)
 
 class AudioUploadResource(Resource):
     def get(self):
@@ -20,7 +24,10 @@ class AudioUploadResource(Resource):
         f = request.files['audio_data']
         with open('audio.wav', 'wb') as audio:
             f.save(audio)
-        emotion = predict("audio.wav")
+        
+        convert_and_split('audio.wav')
+        
+        emotion = predict("output.wav")
         print(emotion)
         return {'emotion': emotion}
         # Validate the request
