@@ -20,7 +20,7 @@ class AudioUploadResource(Resource):
         f = request.files['audio_data']
         with open('audio.wav', 'wb') as audio:
             f.save(audio)
-        emotion = Predict("audio.wav")
+        emotion = predict("audio.wav")
         print(emotion)
         return {'emotion': emotion}
         # Validate the request

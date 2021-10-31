@@ -3,11 +3,12 @@ import librosa
 import librosa.display
 from librosa.feature.spectral import mfcc
 import numpy as np
-
+from model import EmotionClassifier
 
 class Predict():
     def __init__(self):
-        model = torch.load("../mvp.zip")
+        model = EmotionClassifier()
+        model.load_state_dict(torch.load('./mvp.zip'))
         model.eval()
 
     def __call__(self, wav_file):
