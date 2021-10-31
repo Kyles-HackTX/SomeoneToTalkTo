@@ -2,12 +2,13 @@ import torch
 import librosa
 import librosa.display
 from librosa.feature.spectral import mfcc
+import numpy as np
 
 
 class Predict():
     def __init__(self):
-        self.model = torch.load("./mvp.zip")
-        self.model.eval()
+        model = torch.load("../mvp.zip")
+        model.eval()
 
     def __call__(self, wav_file):
         X, sample_rate = librosa.load(wav_file,

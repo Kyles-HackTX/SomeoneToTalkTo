@@ -1,10 +1,14 @@
 from flask import Flask, jsonify, request
 from flask_restful import reqparse, abort, Api, Resource
 import json
+import torch
+from predict import Predict
+
 
 app = Flask(__name__)
 api = Api(app)
 
+predict = Predict()
 
 class AudioUploadResource(Resource):
     def get(self):
@@ -16,8 +20,9 @@ class AudioUploadResource(Resource):
         f = request.files['audio_data']
         with open('audio.wav', 'wb') as audio:
             f.save(audio)
-
-        return {'hello': 'POST'}
+        emotion = Predict("audio.wav")
+        print(emotion)
+        return {'emotion': emotion}
         # Validate the request
         # Capture the audio data from the request
 
