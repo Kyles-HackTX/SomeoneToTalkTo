@@ -13,7 +13,10 @@ class AudioUploadResource(Resource):
         data = request.get_json()
         print(data)
         print(request.files["audio_data"])
-        request.files["audio_data"].save("/tmp/audio.wav")
+        f = request.files['audio_data']
+        with open('audio.wav', 'wb') as audio:
+            f.save(audio)
+
         return {'hello': 'POST'}
         # Validate the request
         # Capture the audio data from the request
