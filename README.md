@@ -40,7 +40,7 @@ will try to guess how you are feeling (and you can do this multiple times)!
 
 ## How to run yourself
 1. Run flask locally/publically using the built in web server.
-2. Run the electron app locally as a frontend.
+2. Run the [electron app](https://github.com/Kyles-HackTX/electron-fe) locally as a frontend.
 3. Talk into the microphone.
 
 ## Where we plan to go with this
