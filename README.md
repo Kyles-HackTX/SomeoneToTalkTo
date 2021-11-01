@@ -21,7 +21,7 @@ will try to guess how you are feeling (and you can do this multiple times)!
     - Model completely made from scratch using a CNN-esque architecture
     - Unfortunately, a FFNN model architecture only yielded half the test accuracy, which is something we learned
 2. Completely full-stack
-    - Model on a cloud with a REST API linking the back-end
+    - Model in the cloud with a REST API linking the back-end
     - A friendly Electron-based front-end so not everything is a black-box
 3. It's ML on the cloud!
 
@@ -33,14 +33,14 @@ will try to guess how you are feeling (and you can do this multiple times)!
 ## Technologies used
 - Electron
 - PyTorch
-- Tensorflow
 - Kaggle
 - Google Colab (& Cloud credits for training)
-- REST APIs
+- Flask
+- EC2
 
 ## How to run yourself
-1. Run flask on a server (CockroachDB, Postgres, etc.).
-2. Run electron locally as a frontend.
+1. Run flask locally/publically using the built in web server.
+2. Run the electron app locally as a frontend.
 3. Talk into the microphone.
 
 ## Where we plan to go with this
