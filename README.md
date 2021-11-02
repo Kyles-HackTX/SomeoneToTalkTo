@@ -19,9 +19,9 @@ will try to guess how you are feeling (and you can do this multiple times)!
     - Deployable for customer-service needs
     - Can be retrained for most tasks using transfer learning
     - Model completely made from scratch using a CNN-esque architecture
-    - Unfortunately, a FFNN model architecture only yielded half the test accuracy, which is something we learned
-2. Completely full-stack
-    - Model in the cloud with a REST API linking the back-end
+    - An FFNN model architecture was attempted, yet only yielded half of our observed test accuracy
+2. Full stack, end-to-end architecture
+    - Model hosted the cloud with a REST API linking the back-end
     - A friendly Electron-based front-end so not everything is a black-box
 3. It's ML on the cloud!
 
@@ -34,12 +34,12 @@ will try to guess how you are feeling (and you can do this multiple times)!
 - Electron
 - PyTorch
 - Kaggle
-- Google Colab (& Cloud credits for training)
+- Google Colab (& Cloud credits for training on GCP Compute Engine)
 - Flask
 - EC2
 
 ## How to run yourself
-1. Run flask locally/publically using the built in web server.
+1. Run flask locally/publically using the built in flask web server.
 2. Run the [electron app](https://github.com/Kyles-HackTX/electron-fe) locally as a frontend.
 3. Talk into the microphone.
 
